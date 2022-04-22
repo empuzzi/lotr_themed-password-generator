@@ -1,7 +1,7 @@
 from random import randint
 
 # List for Lord of The Rings themed words
-lotr_words = ["bardthebowman", "eowyn", "thering", "faramir", "boromir", "hobbitstoisengard", "isengard", "orcs", "thehobbit", "returnoftheking", "fellowshipofthering", "twotowers", "shire", "middle-earth", "frodobaggins", "sauron", "hobbit", "silmarillion", "onering", "samwisegamgee", "lordoftherings", "ent", "tombombadil", "aragorn", "mistymountains", "minastirith", "pipe-weed", "helmsdeep", "moria", "gollum", "smaug", "bilbobaggins", "gimli", "riveranduin", "pathsofthedead", "saruman", "gandalf", "galadriel", "elrond", "fangorn", "darklord","battleofevermore", "wherewasgondor", "gondor", "theoden", "pippin", "merrybrandybuck", "deadmarshes", "pelennorfields", "arwen", "halfling", "treebeard", "mellon", "speakfriendandenter", "tolkien"  ]
+lotr_words = ["elrohir", "adelard", "prancingpony", "witch-king", "grima", "nazgul", "elrond", "isildur", "denethor", "elendor",  "bardthebowman", "eowyn", "thering", "faramir", "boromir", "hobbitstoisengard", "isengard", "orcs", "thehobbit", "returnoftheking", "fellowshipofthering", "twotowers", "shire", "middle-earth", "frodobaggins", "sauron", "hobbit", "silmarillion", "onering", "samwisegamgee", "lordoftherings", "ent", "tombombadil", "aragorn", "mistymountains", "minastirith", "pipe-weed", "helmsdeep", "moria", "gollum", "smaug", "bilbobaggins", "gimli", "riveranduin", "pathsofthedead", "saruman", "gandalf", "galadriel", "elrond", "fangorn", "darklord","battleofevermore", "wherewasgondor", "gondor", "theoden", "pippin", "merrybrandybuck", "deadmarshes", "pelennorfields", "arwen", "halfling", "treebeard", "mellon", "speakfriendandenter", "tolkien"  ]
 
 # User specified password length option
 specify_length = input("Would you like to specify the length of your new password? Type \"y\" for yes or \"n\" for no.")
@@ -43,7 +43,7 @@ ch_count = len(special_ch)
 def password_generator(password_length):
     suitable_passwords = []
     for word in lotr_words:
-        if len(word) <= (int(password_length) - 4) and len(word) >= (int(password_length) - 5):
+        if len(word) <= (int(password_length) - 3):
             suitable_passwords.append(word)
     password = suitable_passwords[randint(0, len(suitable_passwords))]
     return str(password)
