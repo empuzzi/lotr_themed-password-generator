@@ -21,7 +21,11 @@ else:
     password_length = randint(8, 24)
 
 # User specified special characters option
-user_special_ch = int(input("How many special characters would you like to have in your password? Choose up to 3"))
+if password_length < 22:
+    user_special_ch = int(input("How many special characters would you like to have in your password? Choose up to 3"))
+else:
+    user_special_ch = 24 - int(password_length)
+
 # Illiterate user debugging
 if not type(user_special_ch) is int:
     raise TypeError("Please enter a number")
