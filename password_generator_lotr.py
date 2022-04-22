@@ -6,21 +6,22 @@ lotr_words = ["bardthebowman", "eowyn", "thering", "faramir", "boromir", "hobbit
 # User specified password length option
 specify_length = input("Would you like to specify the length of your new password? Type \"y\" for yes or \"n\" for no.")
 # Illiterate user debugging
-if specify_length != "y" and specify_length != "n":
+if (specify_length != "y") and (specify_length != "n"):
     raise TypeError("Please only enter \"y\" or \"n\".")
 
 # Password length
 if specify_length == "y":
-    password_length = input("Specify the length of your password: " )
+    password_length = int(input("Please specify the length of your password. Use a number between 8 and 24" ))
     # Stupid user debugging
     if not type(password_length) is int:
         raise TypeError("Please enter a number")
-    elif password_length < 8 or password_length > 24:
+    elif (password_length < 8) or (password_length > 24):
         raise Exception("Please enter a number between 8 and 24.")
-elif specify_length == "n":
+else:
     password_length = randint(8, 24)
+
 # User specified special characters option
-user_special_ch = input("How many special characters would you like to have in your password? Choose up to 4")
+user_special_ch = int(input("How many special characters would you like to have in your password? Choose up to 4"))
 # Illiterate user debugging
 if not type(user_special_ch) is int:
     raise TypeError("Please enter a number")
@@ -42,11 +43,10 @@ ch_count = len(special_ch)
 def password_generator(password_length):
     suitable_passwords = []
     for word in lotr_words:
-        if len(word) <= (int(password_length) - 4) and len(word) > (int(password_length) - 5):
+        if len(word) <= (int(password_length) - 5) and len(word) >= (int(password_length) - 7):
             suitable_passwords.append(word)
     password = suitable_passwords[randint(0, len(suitable_passwords))]
-    password = str(password)
-    return password
+    return str(password)
 
 # Function to capitalize some letters
 def capitalize():
@@ -74,7 +74,7 @@ def specialize():
 
 # Function for changing some letters to numbers
 def letters_to_numbers():
-    password = str(specialize())
+    password = specialize()
     l_to_n = {"i": "1", "e": "3", "a": "4", "s": "5", "b": "6", "o": "0"}
     keys = list(l_to_n.keys())
     for ch in password:
@@ -84,6 +84,6 @@ def letters_to_numbers():
 
 # Depending on user choice output the password
 if user_customize_ps == "y":
-    print("Your new password is:" + letters_to_numbers())
+    print("Your new password is:" + str(letters_to_numbers()))
 else:
-    print("Your new password is: " + password_generator(password_length))
+    print("Your new password is: " + specialize())
