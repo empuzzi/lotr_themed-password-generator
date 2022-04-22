@@ -2,7 +2,7 @@
 
  A password generator with Lord of The Rings theme. 
 
- The programme allows the user to specify the length of the passwords as well as a number of special character (up to 4).
+ The programme allows the user to specify the length of the passwords as well as a number of special character (up to 3).
 
  If the length is not specified, the programme will randomly generate the length of the password from 8 to 24.
 

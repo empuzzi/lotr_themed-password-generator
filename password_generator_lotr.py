@@ -21,12 +21,12 @@ else:
     password_length = randint(8, 24)
 
 # User specified special characters option
-user_special_ch = int(input("How many special characters would you like to have in your password? Choose up to 4"))
+user_special_ch = int(input("How many special characters would you like to have in your password? Choose up to 3"))
 # Illiterate user debugging
 if not type(user_special_ch) is int:
     raise TypeError("Please enter a number")
-elif user_special_ch > 4 or user_special_ch < 1:
-    raise Exception("Please enter a number between 1 and 4")
+elif user_special_ch > 3 or user_special_ch < 1:
+    raise Exception("Please enter a number between 1 and 3")
 
 # User specified characters to numbers option
 user_customize_ps = input("Would you like to change some characters to similar numbers? Press \"y\" for yes and \"n\" for no.")
@@ -43,7 +43,7 @@ ch_count = len(special_ch)
 def password_generator(password_length):
     suitable_passwords = []
     for word in lotr_words:
-        if len(word) <= (int(password_length) - 5) and len(word) >= (int(password_length) - 7):
+        if len(word) <= (int(password_length) - 4) and len(word) >= (int(password_length) - 5):
             suitable_passwords.append(word)
     password = suitable_passwords[randint(0, len(suitable_passwords))]
     return str(password)
