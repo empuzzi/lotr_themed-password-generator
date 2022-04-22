@@ -1,4 +1,5 @@
 from random import randint
+from tkinter import Y
 
 # List for Lord of The Rings themed words
 lotr_words = ["elrohir", "adelard", "prancingpony", "witch-king", "grima", "nazgul", "elrond", "isildur", "denethor", "elendor",  "bardthebowman", "eowyn", "thering", "faramir", "boromir", "hobbitstoisengard", "isengard", "orcs", "thehobbit", "returnoftheking", "fellowshipofthering", "twotowers", "shire", "middle-earth", "frodobaggins", "sauron", "hobbit", "silmarillion", "onering", "samwisegamgee", "lordoftherings", "ent", "tombombadil", "aragorn", "mistymountains", "minastirith", "pipe-weed", "helmsdeep", "moria", "gollum", "smaug", "bilbobaggins", "gimli", "riveranduin", "pathsofthedead", "saruman", "gandalf", "galadriel", "elrond", "fangorn", "darklord","battleofevermore", "wherewasgondor", "gondor", "theoden", "pippin", "merrybrandybuck", "deadmarshes", "pelennorfields", "arwen", "halfling", "treebeard", "mellon", "speakfriendandenter", "tolkien"  ]
@@ -18,13 +19,15 @@ if specify_length == "y":
     elif (password_length < 8) or (password_length > 24):
         raise Exception("Please enter a number between 8 and 24.")
 else:
-    password_length = randint(8, 24)
+    password_length = randint(8, 21)
 
 # User specified special characters option
-if password_length < 22:
+if password_length < 21:
     user_special_ch = int(input("How many special characters would you like to have in your password? Choose up to 3"))
-else:
+elif password_length > 20 and password_length < 24:
     user_special_ch = 24 - int(password_length)
+elif password_length == 24:
+    user_special_ch = 1
 
 # Illiterate user debugging
 if not type(user_special_ch) is int:
@@ -43,18 +46,32 @@ special_ch = "!#%&?*¤$£@+-"
 # length of scpecial characters string
 ch_count = len(special_ch)
 
-# Function for generating lord of the rings string for the password
-def password_generator(password_length):
+# Function 1 for generating lord of the rings string for the password
+def password_generator1(password_length):
     suitable_passwords = []
     for word in lotr_words:
-        if len(word) <= (int(password_length) - 3):
+        if len(word) < 21 and len(word) > 12:
             suitable_passwords.append(word)
+    #print(suitable_passwords)
     password = suitable_passwords[randint(0, len(suitable_passwords))]
-    return str(password)
+    return password
+
+# Function 2 for generating a password
+def password_generator2(password_length):
+    suitable_passwords = []
+    for word in lotr_words:
+        if len(word) <= (int(password_length) - 4):
+            suitable_passwords.append(word)
+    #print(suitable_passwords)
+    password = suitable_passwords[randint(0, len(suitable_passwords))]
+    return password
 
 # Function to capitalize some letters
 def capitalize():
-    password = password_generator(password_length)
+    if password_length <= 24 and password_length >= 20:
+        password = password_generator1(password_length)
+    elif password_length < 20:
+        password = password_generator2(password_length)
     l_p = len(password)
     count12 = 0
     while count12 < 3:
