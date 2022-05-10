@@ -7,7 +7,7 @@ lotr_words = ["elrohir", "adelard", "prancingpony", "witch-king",\
     "bardthebowman", "eowyn", "thering", "faramir", "boromir",\
      "hobbitstoisengard", "isengard", "orcs", "thehobbit", \
     "returnoftheking", "fellowshipofthering", "twotowers", "shire",\
-     "middle-earth", "frodobaggins", "sauron", "hobbit", \
+     "middleearth", "frodobaggins", "sauron", "hobbit", \
     "silmarillion", "onering", "samwisegamgee", "lordoftherings",\
      "ent", "tombombadil", "aragorn", "mistymountains",\
      "minastirith", "pipe-weed", "helmsdeep", "moria", "gollum",\
@@ -16,32 +16,37 @@ lotr_words = ["elrohir", "adelard", "prancingpony", "witch-king",\
      "darklord","battleofevermore","wherewasgondor", "gondor",\
      "theoden", "pippin", "merrybrandybuck","deadmarshes",\
      "pelennorfields", "arwen", "halfling", "treebeard",\
-     "mellon", "speakfriendandenter", "tolkien"  ]
+     "mellon", "speakfriendandenter", "tolkien", "eorlingas",\
+    "galadrim", "goblin", "halfling", "wraith" "mallorn", "mearas",\
+     "oliphaunt", "urukhai", "mordor", "barrowdowns", "blackrider",\
+     "bree", "strider", "weathertop", "blackland", "greatriver", \
+    "galadrim", "fellowship", "legolas", "lothlorien", "threehunters", \
+    "balrog", "wormtongue", "rivendell", "blackspeech", "morgulvale", \
+    "ringwraith", "shelob", "shadowfax", "bergil", "dunedain", \
+    "dunharrow", "rohirrim", "blackgate"]
 
 # User specified password length option
-specify_length = input("Would you like to specify the length of your new password? Type \"y\" for yes or \"n\" for no.")
+specify_length = input("Would you like to specify the length of your new"\
+  + " password? Type \"y\" for yes or \"n\" for no.")
 # Illiterate user debugging
 if (specify_length != "y") and (specify_length != "n"):
     raise TypeError("Please only enter \"y\" or \"n\".")
 
 # Password length
 if specify_length == "y":
-    password_length = int(input("Please specify the length of your password. Use a number between 8 and 24" ))
+    password_length = int(input("Please specify the length of your password."\
+    + " Use a number between 8 and 24" ))
     # Stupid user debugging
     if not type(password_length) is int:
         raise TypeError("Please enter a number")
     elif (password_length < 8) or (password_length > 24):
         raise Exception("Please enter a number between 8 and 24.")
 else:
-    password_length = randint(8, 21)
+    password_length = randint(8, 24)
 
 # User specified special characters option
-if password_length < 21:
-    user_special_ch = int(input("How many special characters would you like to have in your password? Choose up to 3"))
-elif password_length > 20 and password_length < 24:
-    user_special_ch = 24 - int(password_length)
-elif password_length == 24:
-    user_special_ch = 1
+user_special_ch = int(input("How many special characters would you like"\
++ " to have in your password? Choose up to 3"))
 
 # Illiterate user debugging
 if not type(user_special_ch) is int:
@@ -50,7 +55,8 @@ elif user_special_ch > 3 or user_special_ch < 1:
     raise Exception("Please enter a number between 1 and 3")
 
 # User specified characters to numbers option
-user_customize_ps = input("Would you like to change some characters to similar numbers? Press \"y\" for yes and \"n\" for no.")
+user_customize_ps = input("Would you like to change some characters to "\
++ "similar numbers? Press \"y\" for yes and \"n\" for no.")
 # Illiterate user debugging
 if user_customize_ps != "y" and user_customize_ps != "n":
     raise Exception("Please only enter \"y\" or \"n\".")
@@ -60,21 +66,12 @@ special_ch = "!#%&?*¤$£@+-"
 # length of scpecial characters string
 ch_count = len(special_ch)
 
-# Function 1 for generating lord of the rings string for the password
-def password_generator1(password_length):
+# Function for generating words for the password
+def password_generator(password_length):
     suitable_passwords = []
     for word in lotr_words:
-        if len(word) < 21 and len(word) > 12:
-            suitable_passwords.append(word)
-    #print(suitable_passwords)
-    password = suitable_passwords[randint(0, len(suitable_passwords))]
-    return password
-
-# Function 2 for generating a password
-def password_generator2(password_length):
-    suitable_passwords = []
-    for word in lotr_words:
-        if len(word) <= (int(password_length) - 4):
+        # Statement to make sure password is not mostly numbers at the end
+        if len(word) <= (password_length - 3) and len(word) > (password_length - 6):
             suitable_passwords.append(word)
     #print(suitable_passwords)
     password = suitable_passwords[randint(0, len(suitable_passwords))]
@@ -82,13 +79,10 @@ def password_generator2(password_length):
 
 # Function to capitalize some letters
 def capitalize():
-    if password_length <= 24 and password_length >= 20:
-        password = password_generator1(password_length)
-    elif password_length < 20:
-        password = password_generator2(password_length)
+    password = password_generator(password_length)
     l_p = len(password) # Length of the random word in lotr_words list
     count = 0
-    while count < 3:
+    while count < 2:
         indx = randint(0, l_p)
         password = password[:indx] + password[indx].upper() + password[indx + 1:]
         count += 1
