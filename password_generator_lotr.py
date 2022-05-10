@@ -2,7 +2,21 @@ from random import randint
 from tkinter import Y
 
 # List for Lord of The Rings themed words
-lotr_words = ["elrohir", "adelard", "prancingpony", "witch-king", "grima", "nazgul", "elrond", "isildur", "denethor", "elendor",  "bardthebowman", "eowyn", "thering", "faramir", "boromir", "hobbitstoisengard", "isengard", "orcs", "thehobbit", "returnoftheking", "fellowshipofthering", "twotowers", "shire", "middle-earth", "frodobaggins", "sauron", "hobbit", "silmarillion", "onering", "samwisegamgee", "lordoftherings", "ent", "tombombadil", "aragorn", "mistymountains", "minastirith", "pipe-weed", "helmsdeep", "moria", "gollum", "smaug", "bilbobaggins", "gimli", "riveranduin", "pathsofthedead", "saruman", "gandalf", "galadriel", "elrond", "fangorn", "darklord","battleofevermore", "wherewasgondor", "gondor", "theoden", "pippin", "merrybrandybuck", "deadmarshes", "pelennorfields", "arwen", "halfling", "treebeard", "mellon", "speakfriendandenter", "tolkien"  ]
+lotr_words = ["elrohir", "adelard", "prancingpony", "witch-king",\
+     "grima", "nazgul", "elrond", "isildur", "denethor", "elendor",\
+    "bardthebowman", "eowyn", "thering", "faramir", "boromir",\
+     "hobbitstoisengard", "isengard", "orcs", "thehobbit", \
+    "returnoftheking", "fellowshipofthering", "twotowers", "shire",\
+     "middle-earth", "frodobaggins", "sauron", "hobbit", \
+    "silmarillion", "onering", "samwisegamgee", "lordoftherings",\
+     "ent", "tombombadil", "aragorn", "mistymountains",\
+     "minastirith", "pipe-weed", "helmsdeep", "moria", "gollum",\
+     "smaug", "bilbobaggins","gimli", "riveranduin", "pathsofthedead",\
+     "saruman", "gandalf","galadriel", "elrond", "fangorn",\
+     "darklord","battleofevermore","wherewasgondor", "gondor",\
+     "theoden", "pippin", "merrybrandybuck","deadmarshes",\
+     "pelennorfields", "arwen", "halfling", "treebeard",\
+     "mellon", "speakfriendandenter", "tolkien"  ]
 
 # User specified password length option
 specify_length = input("Would you like to specify the length of your new password? Type \"y\" for yes or \"n\" for no.")
@@ -72,22 +86,22 @@ def capitalize():
         password = password_generator1(password_length)
     elif password_length < 20:
         password = password_generator2(password_length)
-    l_p = len(password)
-    count12 = 0
-    while count12 < 3:
+    l_p = len(password) # Length of the random word in lotr_words list
+    count = 0
+    while count < 3:
         indx = randint(0, l_p)
         password = password[:indx] + password[indx].upper() + password[indx + 1:]
-        count12 += 1
+        count += 1
     return password
 
 # Function for adding special characters and numbers
 def specialize():
     password = capitalize()
     #Loop for special characters
-    count1 = 0
-    while count1 < int(user_special_ch):
+    count = 0
+    while count < int(user_special_ch):
         password += str(special_ch[randint(0, ch_count)])
-        count1 += 1
+        count += 1
     # Loop for numbers in password
     while len(password) < int(password_length):
         password +=  str(randint(0, 9))
@@ -96,6 +110,7 @@ def specialize():
 # Function for changing some letters to numbers
 def letters_to_numbers():
     password = specialize()
+    # Dictionary of letters to change into numbers
     l_to_n = {"i": "1", "e": "3", "a": "4", "s": "5", "b": "6", "o": "0"}
     keys = list(l_to_n.keys())
     for ch in password:
