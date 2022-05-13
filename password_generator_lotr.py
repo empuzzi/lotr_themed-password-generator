@@ -17,7 +17,7 @@ lotr_words = ["elrohir", "adelard", "prancingpony", "witch-king",\
      "theoden", "pippin", "merrybrandybuck","deadmarshes",\
      "pelennorfields", "arwen", "halfling", "treebeard",\
      "mellon", "speakfriendandenter", "tolkien", "eorlingas",\
-    "galadrim", "goblin", "halfling", "wraith" "mallorn", "mearas",\
+    "galadrim", "goblin", "halfling", "wraith", "mallorn", "mearas",\
      "oliphaunt", "urukhai", "mordor", "barrowdowns", "blackrider",\
      "bree", "strider", "weathertop", "blackland", "greatriver", \
     "galadrim", "fellowship", "legolas", "lothlorien", "threehunters", \
